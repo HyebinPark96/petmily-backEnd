@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--패키지명 줄이기-->
+<mapper namespace="com.example.demo.mapper.BoardMapper">
+
+
+    <!-- 글 목록 가져오기 + 게시물 검색  + 정렬 -->
+    <select id="getBoardListWithPagingBySearch" parameterType="hashmap" resultType="BoardDTOExceptPwd">
+        SELECT no, writer, subject, content, writedate, originFile, saveFileDir, saveFileName, viewCnt
+        FROM board
+
+        <!-- choose when 사용해서 깔끔하게 -->
+        <choose>
+            <when test="search_category.equals('subject')">
+                WHERE subject LIKE concat('%', #{search_keyword}, '%')
+            </when>
+            <when test="search_category.equals('content')">
+                WHERE content LIKE concat('%', #{search_keyword}, '%')
+            </when>
+            <when test="search_category.equals('writer')">
+                WHERE writer LIKE concat('%', #{search_keyword}, '%')
+            </when>
+        </choose>
+
+        <!-- 정렬 sort DESC, ASC  param으로 받아와서 if문 줄이기-->
+
+<!--        <if test="columnForSort.equals('')"> &lt;!&ndash; 디폴트 작성일자 내림차순 &ndash;&gt;
+            ORDER BY writedate DESC
+        </if>
+
+        <if test="columnForSort.equals('subject')">
+            ORDER BY subject ASC
+        </if>
+
+        <if test="columnForSort.equals('writer')">
+            ORDER BY writer ASC
+        </if>-->
+
+        <!--
+            라이브러리 변경 후 데이터 총 개수만 주면 알아서 페이징 처리해줘서 필요없음
+            LIMIT #{startNo}, #{postCntPerPage}
+        -->
+    </select>
+
+    <!-- 리스트 페이지 만들기 위한 전체 레코드 개수 가져오기 -->
+    <select id="getPostCntBySearch" parameterType="hashmap" resultType="Integer">
+        SELECT COUNT(no)
+        FROM board
+
+        <choose>
+            <when test="search_category.equals('subject')">
+                WHERE subject LIKE concat('%', #{search_keyword}, '%')
+            </when>
+            <when test="search_category.equals('content')">
+                WHERE content LIKE concat('%', #{search_keyword}, '%')
+            </when>
+            <when test="search_category.equals('writer')">
+                WHERE writer LIKE concat('%', #{search_keyword}, '%')
+            </when>
+        </choose>
+    </select>
+
+
+    <!-- 수정, 삭제 시 비밀번호 확인 -->
+    <select id="checkPwd" resultType="BoardDTOExceptPwd" parameterType="BoardDTO">
+        SELECT no, writer, subject, content, writedate, originFile, saveFileDir, saveFileName, viewCnt
+        FROM board
+        WHERE no = #{no} AND password = #{password}
+    </select>
+
+    <!-- (비밀번호 미포함) 게시글 읽기 -->
+    <select id="readPostExceptPwd" resultType="BoardDTOExceptPwd" parameterType="Integer">
+        SELECT no, writer, subject, content, writedate, originFile, saveFileDir, saveFileName, viewCnt
+        FROM board
+        WHERE no = #{no}
+    </select>
+
+    <!-- (비밀번호 포함) 게시글 읽기 -->
+    <select id="read" parameterType="int" resultType="BoardDTO">
+        SELECT *
+        FROM board
+        WHERE no = #{no}
+    </select>
+    <!-- 게시글 읽을 때 조회수 증가 -->
+<!--    <update id="plusViewCnt" parameterType="BoardDTO">
+        UPDATE board
+        SET viewCnt = #{viewCnt} + 1
+        WHERE no = #{no}
+    </update>-->
+
+    <!-- 게시글 읽을 때 조회수 증가 -->
+    <update id="plusViewCnt" parameterType="BoardDTO">
+        UPDATE board
+        SET viewCnt = (SELECT viewCnt  FROM (SELECT viewCnt
+                                    FROM board
+                                    WHERE no = #{no}) AS tmp) + 1
+        WHERE no = #{no}
+    </update>
+
+    <!-- 파일 다운로드 -->
+    <select id="getFile" parameterType="int" resultType="String">
+        SELECT saveFileName
+        FROM board
+        WHERE no = #{no}
+    </select>
+
+    <!-- 게시글 등록 -->
+    <insert id="insertPost" parameterType="BoardDTO">
+        INSERT INTO board (writer, subject, content, password, originFile, saveFileDir, saveFileName)
+        VALUE (#{writer}, #{subject}, #{content}, #{password}, #{originFile}, #{saveFileDir}, #{saveFileName})
+    </insert>
+
+    <!-- 게시글 수정 : 마이바티스의 update는 행의 개수 반환 -->
+    <update id="updatePost" parameterType="BoardDTO">
+        UPDATE board
+    <!-- 파일 지운 경우 file 관련 컬럼 값 null 되어야 하나, 마이바티스에서는 null 입력이 불가하다. 이럴 때 jdbcType 지정하면 null 입력 가능하다.-->
+        SET subject = #{subject}, content = #{content},
+                originFile = #{originFile, jdbcType=VARCHAR}, saveFileDir = #{saveFileDir, jdbcType=VARCHAR}, saveFileName = #{saveFileName, jdbcType=VARCHAR}
+        WHERE no = #{no}
+    </update>
+
+    <!-- 게시글 삭제 -->
+    <delete id="deletePost" parameterType="Integer">
+        DELETE FROM board
+        WHERE no = #{no}
+    </delete>
+
+
+    <!-- //////////////////// 아래 리액트 포팅 전 ///////////////////// -->
+
+ <!--   &lt;!&ndash; 페이징 + 검색 List 불러오기 &ndash;&gt;
+    <select id="pageList" parameterType="hashmap" resultType="BoardDTO"> &lt;!&ndash;많은 양의 데이터를 검색하는 데 있어서 뛰어난 성능을 보임&ndash;&gt;
+        SELECT *
+        FROM board
+
+        <if test="searchCategory.equals('subject')">
+            WHERE subject LIKE concat('%', #{searchText}, '%')
+        </if>
+
+        <if test="searchCategory.equals('writer')">
+            WHERE writer LIKE concat('%', #{searchText}, '%')
+        </if>
+
+        ORDER BY writeDate DESC
+        LIMIT #{startNo}, #{pagePerRecordCnt}
+    </select>
+-->
+    <insert id="write" parameterType="BoardDTO">
+
+        INSERT INTO board (writer, subject, content, originFile, saveFileDir, saveFileName, saveFileExtension, password)
+        VALUES (#{writer}, #{subject}, #{content}, #{originFile}, #{saveFileDir}, #{saveFileName}, #{saveFileExtension}, #{password})
+
+    </insert>
+
+    <update id="update" parameterType="BoardDTO">
+
+        <if test="originFile==null"> <!-- 파일 업로드 안한 경우 -->
+            UPDATE board
+            SET writer = #{writer}, subject = #{subject}, content = #{content}
+            WHERE no = #{no}
+        </if>
+
+        <if test="originFile!=null"> <!-- 파일 업로드 한 경우 -->
+            UPDATE board
+            SET writer = #{writer}, subject = #{subject}, content = #{content},
+                originFile = #{originFile}, saveFileDir = #{saveFileDir}, saveFileName = #{saveFileName}, saveFileExtension = #{saveFileExtension}
+            WHERE no = #{no}
+        </if>
+
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        DELETE FROM board
+        WHERE no = #{no}
+    </delete>
+
+
+
+    <update id="increaseViewCnt" parameterType="Integer">
+        UPDATE board b
+        SET b.viewCnt =
+            (SELECT viewCnt
+            FROM (
+                SELECT t.viewCnt
+                FROM board t
+                WHERE t.no = #{no}
+                ) AS tmp_board
+            ) + 1
+        WHERE b.no = #{no}
+    </update>
+
+    <select id="totalRecord" resultType="Integer">
+        SELECT COUNT(no)
+        FROM board
+    </select>
+
+    <!-- 검색시 해당하는 게시물 개수 -->
+    <select id="searchCount" parameterType="hashMap" resultType="Integer">
+        SELECT COUNT(no) FROM board
+
+        <if test="searchCategory.equals('subject')">
+            WHERE subject LIKE concat('%', #{searchText}, '%')
+        </if>
+
+        <if test="searchCategory.equals('writer')">
+            WHERE writer LIKE concat('%', #{searchText}, '%')
+        </if>
+
+    </select>
+
+</mapper>
