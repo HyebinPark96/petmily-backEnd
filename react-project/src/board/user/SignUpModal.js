@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 /* import Header from './Header'; */
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../Board.css';
+import '../../style/Board.css';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Form } from "react-bootstrap";

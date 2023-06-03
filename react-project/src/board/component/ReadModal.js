@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import moment from "moment";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { Form } from "react-bootstrap";
-import CheckPwdForUpdateModal from "./CheckPwdForUpdateModal";
-import CheckPwdForDeleteModal from "./CheckPwdForDeleteModal";
+import CheckPwdForUpdateModal from "../user/CheckPwdForUpdateModal";
+import CheckPwdForDeleteModal from "../user/CheckPwdForDeleteModal";
 
 function ReadModal({readModalOpen, no, setFlag}) {
 

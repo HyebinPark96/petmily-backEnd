@@ -1,9 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-
 
 /* const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,14 +13,9 @@ root.render(
 // 따라서 다음과 같이 코드를 수정해주어야 합니다. ReactDOM이 직접 render하는 구조이며 document.getElementById('root')는 render의 파라미터로 전달되었습니다.
 
 ReactDOM.render(
-/*   <React.StrictMode>
+  // 개발시 StrictMode 활성화 
+  <React.StrictMode>
     <App />
-  </React.StrictMode>, */
-  <App />,
+  </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

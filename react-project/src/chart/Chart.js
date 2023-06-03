@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useLayoutEffect} from 'react';
-import Header from './Header';
+import Header from '../board/component/Header';
 import axios from 'axios';
 import moment from 'moment';
 

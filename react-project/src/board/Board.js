@@ -1,14 +1,14 @@
 import React, {useState, useEffect, forwardRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../Board.css';
+import '../style/Board.css';
 
-import ReadModal from './ReadModal';
-import CheckPwdForDeleteModal from './CheckPwdForDeleteModal';
-import CheckPwdForUpdateModal from './CheckPwdForUpdateModal';
-import InsertModal from './InsertModal';
-import Header from './Header';
-import SignUpModal from './SignUpModal';
-import SignInModal from './SignInModal';
+import ReadModal from './component/ReadModal';
+import CheckPwdForDeleteModal from './user/CheckPwdForDeleteModal'
+import CheckPwdForUpdateModal from './user/CheckPwdForUpdateModal';
+import InsertModal from './component/InsertModal';
+import Header from './component/Header';
+import SignUpModal from './user/SignUpModal';
+import SignInModal from './user/SignInModal';
 
 import axios from 'axios';
 import moment from 'moment';
