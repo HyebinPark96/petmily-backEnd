@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Form } from 'react-bootstrap';
 
-import DeleteModal from './DeleteModal';
+import DeleteModal from '../component/DeleteModal';
 
 const CheckPwdForDelete = ({checkPwdForDeleteModalOpen, no, setFlag}) => {
 

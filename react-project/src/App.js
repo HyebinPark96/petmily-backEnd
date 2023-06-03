@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import './App.css';
-import Board from './components/Board';
-import Chart from './components/Chart';
-// import Sort from './components/Sort';
+import Board from './board/Board';
+import Chart from './chart/Chart';
 
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';

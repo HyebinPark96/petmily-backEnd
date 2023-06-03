@@ -1,11 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Form } from 'react-bootstrap';
 
-import UpdateModal from './UpdateModal';
-import { useEffect } from 'react';
+import UpdateModal from '../component/UpdateModal';
 
 const CheckPwdForUpdateModal = ({checkPwdForUpdateModalOpen, no, setFlag}) => {
 
