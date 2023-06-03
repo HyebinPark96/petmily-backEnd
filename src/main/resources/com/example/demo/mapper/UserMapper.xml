@@ -9,9 +9,9 @@
     </insert>
 
     <select id="signInProc" parameterType="UserDTO" resultType="Integer">
-        SELECT COUNT(userId)
+        SELECT COUNT(user_id)
         FROM user
-        WHERE userId = #{userId} AND userPassword = #{userPassword}
+        WHERE user_id = #{userId} AND user_password = #{userPassword}
     </select>
 
 
