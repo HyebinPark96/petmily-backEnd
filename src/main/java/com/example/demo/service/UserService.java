@@ -13,20 +13,12 @@ public class UserService {
 
     public boolean signUpProc(UserDTO userDTO){
         Integer result = userMapper.signUpProc(userDTO);
-        if(result == 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return result == 1;
     }
 
     public boolean signInProc(UserDTO userDTO){
         Integer result = userMapper.signInProc(userDTO);
-        if(result == 1) {
-            return true;
-        } else {
-            return false;
-        }
+        return result == 1;
     };
 
 }

@@ -12,9 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 
-// 예외처리 하기
-
-@RestController // 데이터만 주고받는 컨트롤러
+@RestController
 public class BoardApiRestController {
 
     @Autowired
@@ -25,15 +23,13 @@ public class BoardApiRestController {
 
     // 글 목록 가져오기 + 게시글 검색
     @PostMapping("/board")
-    // RequestParam 대신 DTO로 받을 수 있도록
     public ResponseDTO getBoardListWithPagingBySearch (@RequestBody SearchDTO searchDTO) {
         return boardService.getBoardListWithPagingBySearch(searchDTO);
-        // throw new NullPointerException(); // @RestControllerAdvice TEST
     }
 
     // 수정, 삭제 시 비밀번호 확인
     @PostMapping("/checkPwd")
-    public BoardDTOExceptPwd checkPwd(@RequestBody BoardDTO boardDTO) {
+    public Boolean checkPwd(@RequestBody BoardDTO boardDTO) {
         return boardService.checkPwd(boardDTO);
     }
 
@@ -42,13 +38,6 @@ public class BoardApiRestController {
     public BoardDTOExceptPwd readPost(@PathVariable int no) {
         return boardService.readPostExceptPwd(no);
     }
-
-    // 게시글 읽을 때 조회수 증가  <= 읽을 때 한번에
-/*    @PutMapping("/board/post/{no}/viewCnt")
-    public boolean plusViewCnt(@RequestBody BoardDTO boardDTO) {
-        System.out.println("boardDTO.getViewCnt() : " + boardDTO.getViewCnt());
-        return boardService.plusViewCnt(boardDTO);
-    }*/
 
     // 파일 다운로드
     @PostMapping("/board/post/{no}/download")
@@ -78,7 +67,6 @@ public class BoardApiRestController {
     @PutMapping("/board/post/{no}")
     public boolean updatePost(@RequestPart(value = "originFile", required = false)  MultipartFile file, // 파일 업로드 안할 경우를 위해 required=false 속성 추가
                                             @RequestPart(value = "post") BoardDTO boardDTO) throws Exception{
-
             try {
                 BoardDTO targetBoardDTOForRemove = boardService.read(boardDTO.getNo()); // 로컬 파일 삭제를 위해 DB 게시글 정보 가져옴
 
