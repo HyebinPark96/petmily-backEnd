@@ -63,10 +63,21 @@
 
 
     <!-- 수정, 삭제 시 비밀번호 확인 -->
-    <select id="checkPwd" resultType="BoardDTOExceptPwd" parameterType="BoardDTO">
-        SELECT no, writer, subject, content, writedate, originFile, saveFileDir, saveFileName, viewCnt
-        FROM board
-        WHERE no = #{no} AND password = #{password}
+    <select id="checkPwd" resultType="boolean" parameterType="BoardDTO">
+        SELECT
+            CASE WHEN
+                COUNT(*) > 0
+            THEN
+                1
+            ELSE
+                0
+            END
+        FROM
+            board
+        WHERE
+            no = #{no}
+        AND
+            password = #{password}
     </select>
 
     <!-- (비밀번호 미포함) 게시글 읽기 -->

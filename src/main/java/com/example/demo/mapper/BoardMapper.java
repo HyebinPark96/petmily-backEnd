@@ -20,8 +20,6 @@ public interface BoardMapper {
     // 리스트 페이지 만들기 위한 전체 레코드 개수 가져오기
     public int getPostCnt();
 
-
-
     /*검색 + 정렬*/
     // 글 목록 가져오기 + 게시글 검색 + 정렬
     public List<BoardDTOExceptPwd> getBoardListWithPagingBySearch(Map<String,Object> searchMap);
@@ -29,10 +27,8 @@ public interface BoardMapper {
     // 리스트 페이지 만들기 위한 전체 레코드 개수 가져오기
     public int getPostCntBySearch(Map<String,Object> searchMap);
 
-
-
     // 수정, 삭제 시 비밀번호 확인
-    public BoardDTOExceptPwd checkPwd(BoardDTO boardDTO);
+    public Boolean checkPwd(BoardDTO boardDTO);
 
     // (비밀번호 미포함) 게시글 읽기
     public BoardDTOExceptPwd readPostExceptPwd(@Param("no") int no);
