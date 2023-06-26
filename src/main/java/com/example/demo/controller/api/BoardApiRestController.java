@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 
 @RestController
+@RequestMapping("/api")
 public class BoardApiRestController {
 
     @Autowired
