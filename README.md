@@ -1,4 +1,5 @@
-📌 (가칭) Petmily | 유기동물 정보 시스템   
+# 📌 (가칭) Petmily 유기동물 정보 시스템   
+
 <!-- # 📌 React + Spring Boot 게시판 구현  
 ## 🔨 개발환경
 * Java Version 8, Gradle / Spring Boot Version 2.6.7 / React Version 17.0.2
