@@ -1,18 +1,29 @@
 package com.example.demo.dto;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+@JacksonXmlRootElement(localName = "animal")
+public class AnimalDTO {
+    @JacksonXmlProperty(localName = "kindCd")
+    private Long kindCd;
 
-import java.util.List;
+    @JacksonXmlProperty(localName = "krm")
+    private String krm;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class ResponseDTO {
-    private List<BoardDTOExceptPwd> result; // 전체 게시글 목록
-    private Integer postCnt; // 전체 게시글 수
+    public Long getKindCd() {
+        return kindCd;
+    }
+
+    public void setKindCd(Long kindCd) {
+        this.kindCd = kindCd;
+    }
+
+    public String getKrm() {
+        return krm;
+    }
+
+    public void setKrm(String krm) {
+        this.krm = krm;
+    }
 }
