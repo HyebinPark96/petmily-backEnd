@@ -1,29 +1,24 @@
 package com.example.demo.dto;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+public class ResponseDTO {
 
-@JacksonXmlRootElement(localName = "animal")
-public class AnimalDTO {
-    @JacksonXmlProperty(localName = "kindCd")
-    private Long kindCd;
+    private String kindCd;
 
-    @JacksonXmlProperty(localName = "krm")
-    private String krm;
+    private String knm;
 
-    public Long getKindCd() {
+    public String getKindCd() {
         return kindCd;
     }
 
-    public void setKindCd(Long kindCd) {
+    public void setKindCd(String kindCd) {
         this.kindCd = kindCd;
     }
 
-    public String getKrm() {
-        return krm;
+    public String getKnm() {
+        return knm;
     }
 
-    public void setKrm(String krm) {
-        this.krm = krm;
+    public void setKnm(String knm) {
+        this.knm = knm;
     }
 }

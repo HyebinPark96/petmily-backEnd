@@ -6,7 +6,7 @@ import org.springframework.util.FileCopyUtils;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-public class Util {
+public class UtilFunc {
 
     // API KEY 저장된 텍스트 파일 불러오기
     public String getApiKey() throws IOException {
