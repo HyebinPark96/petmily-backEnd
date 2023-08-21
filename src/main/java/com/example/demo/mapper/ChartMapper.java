@@ -9,6 +9,6 @@ import java.util.List;
 @Repository("com.example.demo.mapper.ChartMapper") // XML 위치
 @Mapper
 public interface ChartMapper {
-    public List<Date> getWriteDate();
-    public List<Integer> getPostCntByWriteDate();
+    List<Date> getWriteDate();
+    List<Integer> getPostCntByWriteDate();
 }
