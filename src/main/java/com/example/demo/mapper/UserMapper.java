@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 @Mapper // 매퍼 사용하면 빈으로 등록되므로 Service단에서 Autowired로 사용가능
 public interface UserMapper {
     // 회원가입
-    public Integer signUpProc(UserDTO userDTO);
+    Integer signUpProc(UserDTO userDTO);
 
     // 로그인
-    public Integer signInProc(UserDTO userDTO);
+    Integer signInProc(UserDTO userDTO);
 }
 

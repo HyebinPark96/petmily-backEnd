@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.BoardMapper">
+
+    <insert id="insertQuestion" parameterType="com.example.demo.dto.BoardDTO">
+        INSERT INTO
+            board
+            (
+                writer
+                , subject
+                , content
+                , writeDate
+                <if test="originFile != null and originFile != ''">
+                    , originFile
+                    , saveFileDir
+                    , saveFileName
+                </if>
+                , password
+            )
+        VALUES
+            (
+                #{writer}
+                , #{subject}
+                , #{content}
+                , NOW()
+                <if test="originFile != null and originFile != ''">
+                    , #{originFile}
+                    , #{saveFileDir}
+                    , #{saveFileName}
+                </if>
+                , #{password}
+            )
+    </insert>
+
+    <select id="selectQuestionList" resultType="com.example.demo.dto.BoardDTO">
+        SELECT
+            no
+            , writer
+            , subject
+            , content
+            , writeDate
+            <!-- 첨부파일 유무 구분하기 위해 가져오기 -->
+            , originFile
+            , viewCnt
+        FROM
+            board
+    </select>
+</mapper>

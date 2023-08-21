@@ -44,11 +44,6 @@ public class AnimalService {
 
             // 파싱 로직 공통코드로 빼기
             // JSON 형태의 String을 JSON 객체로 파싱
-//            JSONParser parser = new JSONParser();
-//            JSONObject object = (JSONObject) parser.parse(responseStr);
-//            JSONObject responseObject = (JSONObject) object.get("response");
-//            JSONObject body = (JSONObject) responseObject.get("body");
-//            JSONObject items = (JSONObject) body.get("items");
             JSONArray item = util.getResponse(responseStr);
 
             for (int i = 0; i < item.size(); i++) {

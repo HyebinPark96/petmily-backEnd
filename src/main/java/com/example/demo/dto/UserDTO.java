@@ -1,16 +1,21 @@
 package com.example.demo.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class UserDTO {
-    private String userId; // 아이디
-    private String userPassword; // 비번
-    private String userName; // 이름
-    private String userRrn; // 주민등록번호
+
+    /** 아이디 **/
+    private String userId;
+
+    /** 비밀번호 **/
+    private String userPassword;
+
+    /** 이름 **/
+    private String userName;
+
+    /** 주민등록번호 **/
+    private String userRrn;
+    
 }

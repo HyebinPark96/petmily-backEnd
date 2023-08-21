@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     @Autowired
-    UserMapper userMapper;
+    private UserMapper userMapper;
 
     public boolean signUpProc(UserDTO userDTO){
         Integer result = userMapper.signUpProc(userDTO);
