@@ -3,11 +3,13 @@ package com.example.demo.dto;
 import com.example.demo.dto.common.ListDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class AnimalDTO extends ListDTO {
 
     /** 공고번호 **/
