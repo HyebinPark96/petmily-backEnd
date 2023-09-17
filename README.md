@@ -4,7 +4,7 @@
 * 배포 URL: https://petmilyplz.netlify.app/
 
 ## 🔨 개발환경
-* Java Version 8, Gradle / Spring Boot Version 2.6.7 / React Version 17.0.2
+* Java Version 8, Gradle / Spring Boot Version 2.6.7 / React Version 17.0.2 / MyBatis 2.2.2 / 
 * 사용 라이브러리
   <!-- * 테이블 : `material-table 1.69.3`
   * 차트 : `amchart4 4.10.22`  
@@ -16,12 +16,13 @@
   * 전역 state 관리 : `zustand 4.3.8` 
   * 배포 : `netlify-cli`
 ## ✅ 기능
- * netlify-cli로 API KEY 숨긴 채 요청하여 유기동물 리스트 및 상세정보 데이터 출력 
- * 무한 스크롤
+ * netlify-cli로 API KEY 숨긴 채 요청하여 유기동물 리스트 및 상세정보 데이터 출력
+ * json-simple 라이브러리와 ObjectMapper로 JSON 데이터 처리
  * 회원기능
    * 회원가입
    * 로그인
    * sessionStorage로 세션 연동 기능 구현
+* 무한 스크롤
   <!-- * 탭 메뉴 구현
     * 1번 탭 게시판, 2번 탭 차트
   * 글 리스트
