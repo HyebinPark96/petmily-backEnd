@@ -1,6 +1,6 @@
 # 📌 Petmily (유기동물 정보 시스템)
 
-* 프론트엔 저장소: https://github.com/HyebinPark96/petmily-frontEnd
+* 프론트엔드 저장소: https://github.com/HyebinPark96/petmily-frontEnd
 * 배포 URL: https://petmilyplz.netlify.app/
 
 ## 🔨 개발환경
