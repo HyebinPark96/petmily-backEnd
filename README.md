@@ -1,14 +1,28 @@
-# 📌 (가칭) Petmily 유기동물 정보 시스템   
+# 📌 Petmily (유기동물 정보 시스템)
 
-<!-- # 📌 React + Spring Boot 게시판 구현  
+* 프론트엔 저장소: https://github.com/HyebinPark96/petmily-frontEnd
+* 배포 URL: https://petmilyplz.netlify.app/
+
 ## 🔨 개발환경
 * Java Version 8, Gradle / Spring Boot Version 2.6.7 / React Version 17.0.2
 * 사용 라이브러리
-  * 테이블 : `material-table 1.69.3`
-  * 차트 : `amchart4 4.10.22` 
-  * 탭 : `material-ui/core 4.12.3`
+  <!-- * 테이블 : `material-table 1.69.3`
+  * 차트 : `amchart4 4.10.22`  
+  * 탭 : `material-ui/core 4.12.3` -->
+  * 컴포넌트 : `@material-ui/core 4.12.3`
+  * 스피너 : `@mui/joy 5.0.0-beta.6`
+  * 라우터 : `react-router-dom 6.4.2`
+  * 알람 메세지 : `toastify 9.1.3` 
+  * 전역 state 관리 : `zustand 4.3.8` 
+  * 배포 : `netlify-cli`
 ## ✅ 기능
-  * 탭 메뉴 구현
+ * netlify-cli로 API KEY 숨긴 채 요청하여 유기동물 리스트 및 상세정보 데이터 출력 
+ * 무한 스크롤
+ * 회원기능
+   * 회원가입
+   * 로그인
+   * sessionStorage로 세션 연동 기능 구현
+  <!-- * 탭 메뉴 구현
     * 1번 탭 게시판, 2번 탭 차트
   * 글 리스트
     * 글 번호, 제목, 작성자, 작성 일자
@@ -26,12 +40,8 @@
   * 조회수 표시
   * 게시글 검색 기능
   * 차트
-    * 컬럼차트 : 일자별 게시글 수
-  * 회원기능
-    * 회원가입
-    * 로그인
-    * sessionStorage로 세션 연동 기능 구현
-## ✅ 피드백
+    * 컬럼차트 : 일자별 게시글 수 --> 
+<!-- ## ✅ 피드백
   * @ControllerAdvice를 이용한 예외처리
   * 마이바티스 여러 if문보다 choose when문으로 코드 줄이기
   * 페이징 처리 : 네트워크 preview/response를 참고하여 페이지당 전체 게시글을 불러오는 방식에서 
