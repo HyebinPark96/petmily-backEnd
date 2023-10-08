@@ -12,5 +12,8 @@ public interface UserMapper {
 
     // 로그인
     Integer signInProc(UserDTO userDTO);
+
+    // 아이디 중복확인
+    Integer checkUserId(UserDTO userDTO);
 }
 

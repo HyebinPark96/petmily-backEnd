@@ -21,4 +21,9 @@ public class UserService {
         return result == 1;
     };
 
+    public boolean checkUserId(UserDTO userDTO){
+        Integer result = userMapper.checkUserId(userDTO);
+        return result == 1;
+    };
+
 }
