@@ -4,15 +4,20 @@
 <mapper namespace="com.example.demo.mapper.UserMapper">
 
     <insert id="signUpProc" parameterType="UserDTO">
-        INSERT INTO user (userId, userPassword, userName, userRrn)
-        VALUES (#{userId},#{userPassword},#{userName},#{userRrn})
+        INSERT INTO user (userId, password, name, gender, email)
+        VALUES (#{userId}, #{password}, #{name}, #{gender}, #{email})
     </insert>
 
     <select id="signInProc" parameterType="UserDTO" resultType="Integer">
-        SELECT COUNT(user_id)
+        SELECT COUNT(userId)
         FROM user
-        WHERE user_id = #{userId} AND user_password = #{userPassword}
+        WHERE userId = #{userId} AND password = #{password}
     </select>
 
+    <select id="checkUserId" parameterType="UserDTO" resultType="Integer">
+        SELECT COUNT(userId)
+        FROM user
+        WHERE userId = #{userId}
+    </select>
 
 </mapper>

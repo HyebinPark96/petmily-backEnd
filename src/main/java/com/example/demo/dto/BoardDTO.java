@@ -25,7 +25,7 @@ public class BoardDTO {
     /** 논리 파일명 **/
     private String originFile;
     
-    /** 순번 **/
+    /** 저장 경로 **/
     private String saveFileDir;
 
     /** 물리 파일명 **/
